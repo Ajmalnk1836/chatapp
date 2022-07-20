@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "347721645899",
+    "project_id": "chatappproject-a133e",
+    "storage_bucket": "chatappproject-a133e.appspot.com"
+  },
+  "client": [     
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:347721645899:android:164d188d89cfa240a8f2ce",
+        "android_client_info": {
+          "package_name": "com.ajmal.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "347721645899-hjd829m76nv1ppp0reotgdkp32ll8h5n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ajmal.chatapp",
+            "certificate_hash": "b771089f431df79648e785ad464f1a4622fcca59"
+          }
+        },
+        {
+          "client_id": "347721645899-jl4gnsdaouoh34vkickt0dd1j19m6bb2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfnzS575FANH3N4RyKYjMUg5bsmzRp4FY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "347721645899-jl4gnsdaouoh34vkickt0dd1j19m6bb2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],   
+  "configuration_version": "1"
+}
