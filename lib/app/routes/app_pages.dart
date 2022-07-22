@@ -8,6 +8,8 @@ import 'package:chatapp/app/modules/calls/bindings/calls_binding.dart';
 import 'package:chatapp/app/modules/calls/views/calls_view.dart';
 import 'package:chatapp/app/modules/chatscreen/bindings/chatscreen_binding.dart';
 import 'package:chatapp/app/modules/chatscreen/views/chatscreen_view.dart';
+import 'package:chatapp/app/modules/forgotpassword/bindings/forgotpassword_binding.dart';
+import 'package:chatapp/app/modules/forgotpassword/views/forgotpassword_view.dart';
 import 'package:chatapp/app/modules/homescreen/bindings/homescreen_binding.dart';
 import 'package:chatapp/app/modules/homescreen/views/homescreen_view.dart';
 import 'package:chatapp/app/modules/login/bindings/home_binding.dart';
@@ -16,6 +18,8 @@ import 'package:chatapp/app/modules/peopelesscreen/bindings/peopelesscreen_bindi
 import 'package:chatapp/app/modules/peopelesscreen/views/peopelesscreen_view.dart';
 import 'package:chatapp/app/modules/registerscreen/bindings/registerscreen_binding.dart';
 import 'package:chatapp/app/modules/registerscreen/views/registerscreen_view.dart';
+import 'package:chatapp/app/modules/searchscreen/bindings/searchscreen_binding.dart';
+import 'package:chatapp/app/modules/searchscreen/views/searchscreen_view.dart';
 import 'package:chatapp/app/modules/settingsscreen/bindings/settingsscreen_binding.dart';
 import 'package:chatapp/app/modules/settingsscreen/views/settingsscreen_view.dart';
 
@@ -71,6 +75,16 @@ class AppPages {
       name: _Paths.CHATSCREEN,
       page: () => ChatscreenView(),
       binding: ChatscreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.FORGOTPASSWORD,
+      page: () => ForgotpasswordView(),
+      binding: ForgotpasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEARCHSCREEN,
+      page: () => SearchscreenView(),
+      binding: SearchscreenBinding(),
     ),
   ];
 }

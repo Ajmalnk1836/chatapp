@@ -18,6 +18,7 @@ class PeopelesscreenController extends GetxController {
     print(iconPressed);
     update();   
   }
+  
 
   final count = 0.obs;
   @override

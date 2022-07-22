@@ -23,7 +23,7 @@ class RegisterscreenView extends GetView<RegisterscreenController> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(top: 8.0),
               child: Align(
                 alignment: Alignment.bottomLeft,
                 child: IconButton(
@@ -43,11 +43,13 @@ class RegisterscreenView extends GetView<RegisterscreenController> {
                 child: Icon(
                   Icons.message,
                   color: Color.fromARGB(255, 4, 88, 156),
-                  size: 120,
+                  size: 110,
                 ),
               ),
             ),
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 30,
+            ),
             Text("Chatter",
                 style: GoogleFonts.montserrat(
                     fontSize: 30, fontWeight: FontWeight.w400)),
@@ -57,26 +59,23 @@ class RegisterscreenView extends GetView<RegisterscreenController> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AuthenticationscreenController.instance.imageFile ==  null
-                ?
-                CircleAvatar(
-                  radius: 60,
-                  backgroundImage: NetworkImage("https://www.w3schools.com/howto/img_avatar.png")
+                AuthenticationscreenController.instance.imageFile == null
+                    ? CircleAvatar(
+                        radius: 60,
+                        backgroundImage: NetworkImage(
+                            "https://www.w3schools.com/howto/img_avatar.png"))
+                    : CircleAvatar(
+                      backgroundColor: Colors.white,
+                        radius: 60,
+                        // backgroundImage:AuthenticationscreenController.instance.imageFile == null? NetworkImage("https://www.w3schools.com/howto/img_avatar.png")
+                        // : Image.file(file),
 
-                ):
-                CircleAvatar(
-
-                  radius: 60,  
-                  // backgroundImage:AuthenticationscreenController.instance.imageFile == null? NetworkImage("https://www.w3schools.com/howto/img_avatar.png")
-                  // : Image.file(file),
-                  
-                  child: Image.file(
+                        child: Image.file(
                           AuthenticationscreenController.instance.imageFile!,
                           width: double.infinity,
                           fit: BoxFit.cover,
                         ),
-                ),
-              
+                      ),
                 IconButton(
                     onPressed: () {
                       Get.defaultDialog(
@@ -94,6 +93,7 @@ class RegisterscreenView extends GetView<RegisterscreenController> {
                                     onPressed: () {
                                       AuthenticationscreenController.instance
                                           .selectImage();
+                                      Get.back();
                                     },
                                     icon: Icon(
                                       Icons.camera,
@@ -112,6 +112,7 @@ class RegisterscreenView extends GetView<RegisterscreenController> {
                                     onPressed: () {
                                       AuthenticationscreenController.instance
                                           .selectGallery();
+                                      Get.back();
                                     },
                                     icon: Icon(
                                       Icons.photo,
@@ -119,7 +120,7 @@ class RegisterscreenView extends GetView<RegisterscreenController> {
                                     ))
                               ],
                             )
-                          ],   
+                          ],
                         ),
                       );
                       // AuthenticationscreenController.instance.selectImage();
@@ -127,7 +128,9 @@ class RegisterscreenView extends GetView<RegisterscreenController> {
                     icon: Icon(Icons.add))
               ],
             ),
-              SizedBox(height: 10,), 
+            SizedBox(
+              height: 10,
+            ),
             Container(
               height: 50,
               width: width * 0.8,
@@ -223,6 +226,7 @@ class RegisterscreenView extends GetView<RegisterscreenController> {
                             emailcontroller.text.trim(),
                             passwordcontroller.text.trim(),
                             usernamecontroller.text.trim());
+                           //clear();
                       }
                     },
                     child: Text(
@@ -289,5 +293,12 @@ class RegisterscreenView extends GetView<RegisterscreenController> {
         ),
       ),
     )));
+  }
+
+  void clear() {
+    usernamecontroller.clear();
+    emailcontroller.clear();
+    passwordcontroller.clear();
+    
   }
 }

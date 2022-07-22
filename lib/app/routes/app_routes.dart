@@ -13,6 +13,8 @@ abstract class Routes {
   static const PEOPELESSCREEN = _Paths.PEOPELESSCREEN;
   static const SETTINGSSCREEN = _Paths.SETTINGSSCREEN;
   static const CHATSCREEN = _Paths.CHATSCREEN;
+  static const FORGOTPASSWORD = _Paths.FORGOTPASSWORD;
+  static const SEARCHSCREEN = _Paths.SEARCHSCREEN;
 }
 
 abstract class _Paths {
@@ -25,4 +27,6 @@ abstract class _Paths {
   static const PEOPELESSCREEN = '/peopelesscreen';
   static const SETTINGSSCREEN = '/settingsscreen';
   static const CHATSCREEN = '/chatscreen';
+  static const FORGOTPASSWORD = '/forgotpassword';
+  static const SEARCHSCREEN = '/searchscreen';
 }

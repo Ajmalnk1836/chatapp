@@ -16,6 +16,7 @@ dependencies:
   flutter_chat_bubble: ^2.0.0
   get: 4.6.5
   google_fonts: ^3.0.1
+  google_sign_in: ^5.4.0
   image_picker: ^0.8.5+3
 
 dev_dependencies:

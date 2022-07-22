@@ -1,4 +1,5 @@
 import 'package:chatapp/app/modules/authenticationscreen/controllers/authenticationscreen_controller.dart';
+import 'package:chatapp/app/modules/forgotpassword/views/forgotpassword_view.dart';
 import 'package:chatapp/app/modules/registerscreen/views/registerscreen_view.dart';
 import 'package:flutter/material.dart';
 
@@ -23,13 +24,13 @@ class Loginscreen extends GetView<HomeController> {
         child: Column(
           children: [
             SizedBox(
-              height: 90,
+              height: 40,
             ),
             Center(
               child: Container(
                 //color: Colors.red,
                 height: height * 0.2,
-                width: width * 0.5,
+                width: width * 0.3,
                 child: Icon(
                   Icons.message,
                   color: Color.fromARGB(255, 4, 88, 156),
@@ -107,9 +108,17 @@ class Loginscreen extends GetView<HomeController> {
                 },
               ),
             ),
-            SizedBox(
-              height: 20,
+            Padding(
+              padding: const EdgeInsets.only(right: 19.0),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: TextButton(
+                    onPressed: () {
+                      Get.to(ForgotpasswordView());
+                    }, child: Text("Forgot Password ?",style: TextStyle(color: Colors.red),)),
+              ),
             ),
+          
             Container(
                 height: 44,
                 width: width * 0.7,
@@ -172,7 +181,9 @@ class Loginscreen extends GetView<HomeController> {
                     color: Colors.orange,
                     borderRadius: BorderRadius.circular(20)),
                 child: TextButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      AuthenticationscreenController.instance.googleSigning(); 
+                    },
                     icon: Icon(
                       Icons.apple,
                       color: Colors.white,

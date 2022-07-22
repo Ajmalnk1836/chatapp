@@ -8,8 +8,8 @@ class BottomnavigationscreenController extends GetxController {
   //TODO: Implement BottomnavigationscreenController
 int tabindex = 0;
 final List screens = [
-  HomescreenView(),
-  CallsView(),
+  // HomescreenView(),
+  // CallsView(), 
   PeopelesscreenView(),
   SettingsscreenView()
 

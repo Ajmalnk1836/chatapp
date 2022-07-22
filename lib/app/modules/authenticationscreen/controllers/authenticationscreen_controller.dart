@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AuthenticationscreenController extends GetxController {
@@ -18,17 +19,16 @@ class AuthenticationscreenController extends GetxController {
   late Rx<User?> _user;
 
   FirebaseAuth auth = FirebaseAuth.instance;
+  GoogleSignIn googleSign = GoogleSignIn(scopes: ['email']);
 
   File? imageFile;
   String? downloadUrl;
-@override
+  @override
   void onInit() {
-    waiting();
-   
     super.onInit();
   }
 
-  @override
+  @override   
   void onReady() {
     super.onReady();
     _user = Rx<User?>(auth.currentUser);
@@ -38,7 +38,7 @@ class AuthenticationscreenController extends GetxController {
   }
 
   void _initailscreen(User? user) {
-    user == null
+    user == null 
         ? Get.offAll(Loginscreen())
         : Get.offAll(BottomnavigationscreenView());
   }
@@ -53,7 +53,7 @@ class AuthenticationscreenController extends GetxController {
           titleText: Text(
             "Login failed ",
             style: TextStyle(color: Colors.white),
-          ),
+          ),  
           messageText: Text(
             e.toString(),
             style: TextStyle(color: Colors.white),
@@ -82,14 +82,14 @@ class AuthenticationscreenController extends GetxController {
     imageFile = File(pickedImage!.path);
     print(imageFile);
 
-    update();
+    update();   
   }
 
-  Future selectGallery() async {
+  Future selectGallery() async {   
     final pickedImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
 
-    imageFile = File(pickedImage!.path);
+    imageFile = File(pickedImage!.path);  
     print(imageFile);
 
     update();
@@ -100,16 +100,23 @@ class AuthenticationscreenController extends GetxController {
       UserCredential result = await auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User user = result.user!;
+      final docUser = FirebaseFirestore.instance.collection("user").doc();
       await uploaDImage();
-      final docUSer = FirebaseFirestore.instance.collection("user").doc();
+
       final usermodel = Usermodel(
-          uid: user.uid, email: email, uname: username, image: downloadUrl);
+          id: docUser.id,
+          uid: user.uid,
+          email: email,
+          uname: username,
+          image: downloadUrl);
       final json = usermodel.toJson();
-      await docUSer.set(json);
+      await docUser.set(json); 
 
       Get.snackbar("Suucessfull", "congrats",
           snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
       Get.off(BottomnavigationscreenView());
+      downloadUrl = '';
+
     } catch (e) {
       Get.snackbar("About user", "Not matcthed",
           backgroundColor: Colors.red,
@@ -121,18 +128,44 @@ class AuthenticationscreenController extends GetxController {
           messageText: Text(
             e.toString(),
             style: TextStyle(color: Colors.white),
-          ));
+          )); 
+    }
+  }
+
+  void sendPasswrodReset(String email) async {
+    try {
+      await auth.sendPasswordResetEmail(email: email).then((value) => {
+            Get.offAll(Loginscreen()),
+            Get.snackbar("Password reset email link is been sent", "Success")
+          });
+    } catch (e) {
+      print(e);
+      Get.snackbar(e.toString(), "Youe enterd mail is error");
     }
   }
 
   void logout() async {
     await auth.signOut();
   }
- waiting()   async{
-  final time =  await Future.delayed(Duration(seconds: 5));
- }
- final count = 0.obs;
-  
+
+  void googleSigning() async {
+    final GoogleSignInAccount? googleuser = await googleSign.signIn();
+    final GoogleSignInAuthentication googleAuth =
+        await googleuser!.authentication;
+    final AuthCredential credential = GoogleAuthProvider.credential(
+      idToken: googleAuth.idToken,
+      accessToken: googleAuth.accessToken,
+    );
+    final User? users = await auth
+        .signInWithCredential(credential)
+        .then((value) => Get.offAll(BottomnavigationscreenView()));
+  }
+
+  void googleSignout() async {
+    await googleSign.signOut();
+  }
+
+  final count = 0.obs;
 
   @override
   void onClose() {}

@@ -8,7 +8,8 @@ import 'app/routes/app_pages.dart';
 
 void main() async {
    WidgetsFlutterBinding.ensureInitialized();
-   await Firebase.initializeApp().then((value) => Get.put(AuthenticationscreenController()));
+   await Firebase.initializeApp()
+   .then((value) => Get.put(AuthenticationscreenController()));
 
   runApp(
     GetMaterialApp( 

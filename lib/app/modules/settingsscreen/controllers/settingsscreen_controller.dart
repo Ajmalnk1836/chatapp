@@ -13,12 +13,22 @@ class SettingsscreenController extends GetxController {
     super.onInit();
   }
 
+  final CollectionReference profileList =
+      FirebaseFirestore.instance.collection("user");
+
   Stream<List<Usermodel>> readUseronly() => FirebaseFirestore.instance
       .collection("user")
       .where("uid", isEqualTo: currentUser)
       .snapshots()
       .map((snapshot) =>
           snapshot.docs.map((doc) => Usermodel.fromJson(doc.data())).toList());
+
+     
+//  Future update() async{
+//    profileList.doc(profileList.id)
+
+// }
+  
 
   @override
   void onReady() {
